@@ -1,28 +1,37 @@
 "use client";
 
-import Link from "next/link";
+import { useCategoryProducts } from "@/hooks/useCategoryProducts";
+import { useParams } from "next/navigation";
 import Image from "next/image";
-import { useProducts } from "@/hooks/useProducts";
-import Spinner from "@/components/ui/Spinner"; // Verifica que el nombre del archivo es correcto
+import Link from "next/link";
 
-export default function HomePage() {
-    const { products, loading, error } = useProducts();
+export default function CategoryPage() {
+    const { category } = useParams();
+    const { products, loading, error } = useCategoryProducts(category as string);
 
     if (loading) {
-        return <Spinner />
+        return <div className="max-w-7xl mx-auto p-4">Cargando productos...</div>;
     }
 
-    if (error) {
+    if (error || products.length === 0) {
         return (
             <div className="max-w-7xl mx-auto p-4 text-red-500">
-                Error al cargar los productos
+                No se encontraron productos para esta categoría.
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen max-w-7xl mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-6">Productos</h1>
+        <div className="max-w-7xl mx-auto p-6">
+            <Link
+                href="/"
+                className="mb-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all inline-block"
+            >
+                ← Regresar a la tienda
+            </Link>
+
+            <h1 className="text-3xl font-bold mb-6 capitalize">{category}</h1>
+
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {products.map((product) => (
                     <div
@@ -38,7 +47,7 @@ export default function HomePage() {
                                     height={200}
                                     className="w-full h-48 object-contain"
                                 />
-                                <h3 className="font-bold text-lg mt-2 text-gray-800">{product.title}</h3>
+                                <h3 className="font-bold text-lg mt-2">{product.title}</h3>
                                 <p className="text-green-600 font-medium">${product.price}</p>
                             </div>
                         </Link>
