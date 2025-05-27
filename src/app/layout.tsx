@@ -20,20 +20,16 @@ export const metadata: Metadata = {
     description: "E-Commerce construido con Next.js y TailwindCSS",
 };
 
-export default function RootLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en">
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
                 <Navbar /> {/* Navbar incluido para todas las páginas */}
-                <main className="max-w-7xl mx-auto p-4">{children}</main>
+
+                <main className="max-w-7xl mx-auto p-4 flex-grow">{children}</main> {/* Esto empuja el Footer hacia abajo */}
+
                 <Toaster richColors position="top-right" />
-                <Footer />
+                <Footer /> {/* Siempre estará pegado en la parte inferior */}
             </body>
         </html>
     );
