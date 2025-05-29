@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar"; // Importamos el Navbar
+import Navbar from "@/components/layout/Navbar";
 import { Toaster } from "sonner";
 import Footer from "@/components/ui/Footer";
+import { notFound } from "next/navigation";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
                 <Navbar /> {/* Navbar incluido para todas las páginas */}
 
-                <main className="max-w-7xl mx-auto p-4 flex-grow">{children}</main> {/* Esto empuja el Footer hacia abajo */}
+                <main className="max-w-7xl mx-auto p-4 flex-grow">
+                    {children}
+                </main>
 
                 <Toaster richColors position="top-right" />
                 <Footer /> {/* Siempre estará pegado en la parte inferior */}

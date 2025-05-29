@@ -6,15 +6,13 @@ import { useCategories } from "@/hooks/useCategories";
 import { useCartStore } from "@/store/cartStore";
 import { useState, useEffect } from "react";
 import NavMenu from "../ui/NavMenu";
-
-
+import SearchBar from "../ui/SearchBar"; // Sin prop `onSearch`
 
 export default function Navbar() {
     const { categories, loading, error } = useCategories();
     const { cart } = useCartStore();
     const [totalItems, setTotalItems] = useState(0);
 
-    // Evitar errores de hidratación: calcular totalItems solo en el cliente
     useEffect(() => {
         setTotalItems(cart.reduce((acc, item) => acc + item.quantity, 0));
     }, [cart]);
@@ -25,25 +23,14 @@ export default function Navbar() {
                 {/* Logo */}
                 <Link href="/">
                     <div className="flex items-center gap-4 cursor-pointer">
-                        <Image
-                            src="/Fronty.png"
-                            alt="Logo MicroWeb-cr"
-                            width={38}
-                            height={38}
-                            priority
-                            className="h-8 w-auto"
-                        />
+                        <Image src="/Fronty.png" alt="Logo MicroWeb-cr" width={38} height={38} priority className="h-8 w-auto" />
                         <span className="text-2xl font-bold text-white">MicroWeb-cr Store</span>
                     </div>
                 </Link>
 
-                {/* Barra de búsqueda (visible solo en md o más grande) */}
-                <div className="hidden md:block flex-1 px-4 border border-gray-300 rounded-lg text-gray-600 mx-5">
-                    <input
-                        type="text"
-                        placeholder="Buscar productos..."
-                        className="w-full rounded-lg p-2 shadow-inner outline-none"
-                    />
+                {/* Barra de búsqueda */}
+                <div className="hidden md:block flex-1 px-4  text-gray-600 mx-5">
+                    <SearchBar /> 
                 </div>
 
                 {/* Enlaces de navegación */}

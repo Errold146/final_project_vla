@@ -1,12 +1,10 @@
 import { Metadata } from "next";
 import CategoryPageClient from "./CategoryPageClient";
-import type { JSX } from "react";
 
 interface CategoryParams {
     category: string;
 }
 
-// Mapa de categorías inglés -> español
 const categoryMap: Record<string, string> = {
     "electronics": "Electrónica",
     "jewelery": "Joyería",
@@ -23,6 +21,7 @@ export async function generateMetadata({ params }: { params: CategoryParams }): 
     };
 }
 
-export default function CategoryPage(props: JSX.IntrinsicAttributes) {
-    return <CategoryPageClient {...props} />;
+export default function CategoryPage({ params }: { params: CategoryParams }) {
+    const categoryEs = categoryMap[params.category] || params.category;
+    return <CategoryPageClient category={params.category} categoryEs={categoryEs} />;
 }

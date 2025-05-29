@@ -1,16 +1,20 @@
 "use client";
 
+import Spinner from "@/components/ui/Spinner";
 import { useCategoryProducts } from "@/hooks/useCategoryProducts";
-import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CategoryPage() {
-    const { category } = useParams();
-    const { products, loading, error } = useCategoryProducts(category as string);
+interface Props {
+    category: string;
+    categoryEs: string;
+}
+
+export default function CategoryPageClient({ category, categoryEs }: Props) {
+    const { products, loading, error } = useCategoryProducts(category);
 
     if (loading) {
-        return <div className="max-w-7xl mx-auto p-4">Cargando productos...</div>;
+        return <Spinner />
     }
 
     if (error || products.length === 0) {
@@ -30,7 +34,7 @@ export default function CategoryPage() {
                 ← Regresar a la tienda
             </Link>
 
-            <h1 className="text-3xl font-bold mb-6 capitalize">{category}</h1>
+            <h1 className="text-3xl font-bold mb-6 capitalize">{categoryEs}</h1>
 
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {products.map((product) => (

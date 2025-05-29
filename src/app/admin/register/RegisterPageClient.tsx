@@ -38,8 +38,8 @@ export default function RegisterPageClient() {
     };
 
     return (
-        <div className="h-[1100px] flex justify-center items-center overflow-hidden">
-            <div className="max-w-lg w-full p-6 bg-white shadow-md rounded-lg">
+        <div className="flex justify-center items-center min-h-[70vh]">
+            <div className="w-full max-w-lg p-8 bg-white shadow-md rounded-lg">
                 <h1 className="text-2xl font-bold mb-4 text-center text-cyan-500">Crear Cuenta</h1>
                 <form onSubmit={handleRegister} className="space-y-4">
                     <div>
