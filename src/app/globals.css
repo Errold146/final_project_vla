@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #18181b;
+  /* Gris oscuro */
+  --foreground: #ededed;
+  /* Gris claro para el texto */
 }
 
 @theme inline {
@@ -14,7 +16,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #18181b;
+    /* Mantén el mismo gris oscuro en dark mode */
     --foreground: #ededed;
   }
 }

@@ -7,7 +7,7 @@ import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 export default function Footer() {
     return (
         <footer className="bg-gradient-to-r from-blue-300 via-cyan-400 to-green-400 text-white py-6">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-3">
 
                 {/* Logo y descripción */}
                 <div className="text-center md:text-left">
@@ -50,7 +50,7 @@ export default function Footer() {
             </div>
 
             {/* Copyright */}
-            <div className="text-center mt-6 text-sm text-white/80">
+            <div className="text-center text-sm text-white/80">
                 © {new Date().getFullYear()} MicroWeb-cr. Todos los derechos reservados.
             </div>
         </footer>

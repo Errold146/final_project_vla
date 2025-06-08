@@ -53,7 +53,7 @@ export default function ProductPageClient() {
                     <p className="text-xl text-green-600 font-semibold mb-4">
                         ${product.price}
                     </p>
-                    <p className="text-gray-600">{product.description}</p>
+                    <p className="text-gray-400">{product.description}</p>
 
                     {/* Botón para agregar al carrito */}
                     <button

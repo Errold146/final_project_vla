@@ -29,6 +29,10 @@ export default function NoResults() {
                 <Link
                     href="/"
                     className="mt-2 inline-block bg-cyan-500 text-white px-6 py-2 rounded-full font-semibold shadow hover:bg-cyan-600 transition"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        window.location.href = "/";
+                    }}
                 >
                     Volver al inicio
                 </Link>
